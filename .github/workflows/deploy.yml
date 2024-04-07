@@ -18,12 +18,12 @@ jobs:
       - name: Deploy to server
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}
+          host: ${{ secrets._HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           script: |
             # 切换到你的应用目录  
-            cd /path/to/your/app  
+            cd /opt/fsm-web/  
             
             # 停止当前运行的应用（如果有的话）  
             # pm2 stop your-app-name || true # 假设你使用PM2管理应用  
@@ -31,13 +31,14 @@ jobs:
             # killall node || true # 停止所有node进程  
             
             # 清除旧的node_modules目录和package-lock.json文件（可选）  
-            rm -rf node_modules package-lock.json  
+            # rm -rf node_modules package-lock.json  
+            rm -rf node_modules
             
             # 从GitHub复制最新的代码到服务器  
-            rsync -avz --delete ./ ${username}@${host}:/path/to/your/app/  
+            rsync -avz --delete ./ ${username}@${host}:/opt/fsm-web/
             
             # 在服务器上安装依赖  
-            ssh ${username}@${host} "cd /path/to/your/app && npm install"  
+            ssh ${username}@${host} "cd /opt/fsm-web/ && npm install"  
             
             # 启动你的Node.js应用  
-            ssh ${username}@${host} "cd /path/to/your/app && npm start"
+            ssh ${username}@${host} "cd /opt/fsm-web/ && npm start"
