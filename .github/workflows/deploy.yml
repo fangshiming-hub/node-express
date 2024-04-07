@@ -31,6 +31,7 @@ jobs:
           host: ${{ secrets._HOST }}
           username: ${{ secrets._USERNAME }}
           password: ${{ secrets._PASSWORD }}
+          port: ${{ secrets._PORT }}
           script: |
             # 切换到你的应用目录  
             cd /opt/fsm-web
