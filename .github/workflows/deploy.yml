@@ -19,8 +19,8 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets._HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          username: ${{ secrets._USERNAME }}
+          password: ${{ secrets._PASSWORD }}
           script: |
             # 切换到你的应用目录  
             cd /opt/fsm-web/  
