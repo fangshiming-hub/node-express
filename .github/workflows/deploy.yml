@@ -12,8 +12,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
+#      - name: Install dependencies
+#        run: npm install
+
+      - name: copy dist file with scp
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets._HOST }}
+          username: ${{ secrets._USERNAME }}
+          password: ${{ secrets._PASSWORD }}
+          port: ${{ secrets._PORT }}
+          source: './'
+          target: '/opt/fsm-web'
 
       - name: Deploy to server
         uses: appleboy/ssh-action@master
@@ -23,7 +33,7 @@ jobs:
           password: ${{ secrets._PASSWORD }}
           script: |
             # 切换到你的应用目录  
-            cd /opt/fsm-web/  
+            cd /opt/fsm-web
             
             # 停止当前运行的应用（如果有的话）  
             # pm2 stop your-app-name || true # 假设你使用PM2管理应用  
