@@ -45,11 +45,6 @@ jobs:
             # rm -rf node_modules package-lock.json  
             rm -rf node_modules
             
-            # 从GitHub复制最新的代码到服务器  
-            rsync -avz --delete ./ ${username}@${host}:/opt/fsm-web
+            npm install
             
-            # 在服务器上安装依赖  
-            ssh ${username}@${host} "cd /opt/fsm-web && npm install"  
-            
-            # 启动你的Node.js应用  
-            ssh ${username}@${host} "cd /opt/fsm-web && npm start"
+            npm run start
