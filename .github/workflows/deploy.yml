@@ -33,7 +33,7 @@ jobs:
           password: ${{ secrets._PASSWORD }}
           port: ${{ secrets._PORT }}
           script: |
-            # 切换到你的应用目录  
+            # 切换到你的应用目录   修改node版本重试
             cd /opt/fsm-web
             
             # 停止当前运行的应用（如果有的话）  
