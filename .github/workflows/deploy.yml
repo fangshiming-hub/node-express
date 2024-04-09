@@ -37,7 +37,7 @@ jobs:
             cd /opt/fsm-web
             
             # 停止当前运行的应用（如果有的话）  
-            # pm2 stop your-app-name || true # 假设你使用PM2管理应用  
+            pm2 stop node-express || true # 假设你使用PM2管理应用  
             # 或者  
             # killall node || true # 停止所有node进程  
             
